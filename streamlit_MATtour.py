@@ -115,8 +115,8 @@ def display_top_attractions(places: list):
             st.markdown(f"{line1}<br>{line2}", unsafe_allow_html=True)
 
 def main():
-    st.set_page_config(page_title="관광지 주변 맛집 추천", layout="wide")
-    st.title("📍 관광지 주변 맛집 추천 시스템")
+    st.set_page_config(page_title="MatTour😋", layout="wide")
+    st.title("📍MatTour😋")
 
     if not google_key:
         st.error("❗ .env 파일에 'Google_key'가 설정되지 않았습니다.")
@@ -157,7 +157,7 @@ def main():
             st.error("위치 정보를 불러오지 못했습니다.")
             return
 
-        st.subheader("🍽 주부 3km 맛집 Top 10")
+        st.subheader("🍽 주변 2km 맛집 Top 10")
         restaurants = find_nearby_restaurants(lat, lng, google_key)
         df = pd.DataFrame(restaurants)
         df = preprocess_restaurant_data(df)
@@ -202,6 +202,7 @@ def main():
             </script>
         </body>
         </html>"""
+
         components.html(html_code, height=550)
         csv = df.to_csv(index=False).encode('utf-8')
         st.download_button(
